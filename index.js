@@ -1,4 +1,5 @@
 const fs = require('node:fs');
+require('log-timestamp');
 // Require the necessary discord.js classes
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
