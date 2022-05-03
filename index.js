@@ -77,5 +77,17 @@ for (const file of eventFiles) {
 				the function that is to be executed upon this event occurring	*/
 }
 
+
+let lineCount = 0;
+
+const logFile = './log';
+console.log(`Watching for file changes on ${logFile}`);
+
+fs.watchFile(logFile, (curr, prev) => {
+	console.log(`${logFile} file changed.`);
+});
+
+
+
 // login to Discord with your client's token
 client.login(token);
