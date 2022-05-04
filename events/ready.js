@@ -9,6 +9,16 @@ module.exports = {
 
 	// the following function is what will be executed once our bot is notified of this event occurring
 	execute(client) {
+
+		const Tail = require('tail-file');
+
+		client.devLogChannel = client.channels.cache.get(client.devLogChannelId);
+
+		client.devLogTail = new Tail('./log', line => {
+			console.log( line );
+			client.devLogChannel.send( line );
+		});
+		
 		// log out to the console the following message telling the world that ITS ALIVE!!!
 		console.log(`${client.user.tag} ready!`);
 	}

@@ -6,12 +6,19 @@ require('log-timestamp');
 const { Client, Collection, Intents } = require('discord.js');
 
 // load the unique, secure, super secret token from the config.json file...
-const { token } = require('./config.json');
+const { guildId, clientId, token, devLogChannelId, releaseLogChannelId } = require('./config.json');
+
 
 // create a new client instance, this represents our bot in code or bot is a client connecting to a discord server
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
+if ( devLogChannelId ) {
+	client.devLogChannelId = devLogChannelId;
+}
 
+if ( releaseLogChannelId ) {
+	client.releaseLogChannelId = releaseLogChannelId;
+}
 
 /*************************************/
 /* L O A D  C O M M A N D  F I L E S */
@@ -37,7 +44,6 @@ for (const file of commandFiles) {
 	// with the command name as the key and the exported module (code to execute) as the value
 	client.commands.set(command.data.name, command);
 }
-
 
 
 /*********************************/
@@ -78,16 +84,6 @@ for (const file of eventFiles) {
 }
 
 
-let lineCount = 0;
-
-const logFile = './log';
-console.log(`Watching for file changes on ${logFile}`);
-
-fs.watchFile(logFile, (curr, prev) => {
-	console.log(`${logFile} file changed.`);
-});
-
-
-
 // login to Discord with your client's token
 client.login(token);
+
