@@ -3,7 +3,7 @@ const fs = require('node:fs');
 require('log-timestamp');
 
 // require the necessary discord.js modules
-const { Client, Collection, Intents } = require('discord.js');
+dfconst { Client, Collection, Intents } = require('discord.js');
 
 // load the unique, secure, super secret token from the config.json file...
 const { guildId, clientId, token, devLogChannelId, releaseLogChannelId } = require('./config.json');
