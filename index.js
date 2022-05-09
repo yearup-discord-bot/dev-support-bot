@@ -6,7 +6,7 @@ require('log-timestamp');
 dfconst { Client, Collection, Intents } = require('discord.js');
 
 // load the unique, secure, super secret token from the config.json file...
-const { guildId, clientId, token, devLogChannelId, releaseLogChannelId } = require('./config.json');
+dfconst { guildId, clientId, token, devLogChannelId, releaseLogChannelId } = require('./config.json');
 
 
 // create a new client instance, this represents our bot in code or bot is a client connecting to a discord server
