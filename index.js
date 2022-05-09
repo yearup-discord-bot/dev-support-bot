@@ -3,14 +3,14 @@ const fs = require('node:fs');
 require('log-timestamp');
 
 // require the necessary discord.js modules
-dfconst { Client, Collection, Intents } = require('discord.js');
+const { Client, Collection, Intents } = require('discord.js');
 
 // load the unique, secure, super secret token from the config.json file...
-dfconst { guildId, clientId, token, devLogChannelId, releaseLogChannelId } = require('./config.json');
+const { guildId, clientId, token, devLogChannelId, releaseLogChannelId } = require('./config.json');
 
 
 // create a new client instance, this represents our bot in code or bot is a client connecting to a discord server
-fdconst client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 if ( devLogChannelId ) {
 	client.devLogChannelId = devLogChannelId;
