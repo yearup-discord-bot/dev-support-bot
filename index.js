@@ -6,18 +6,14 @@ require('log-timestamp');
 const { Client, Collection, Intents } = require('discord.js');
 
 // load the unique, secure, super secret token from the config.json file...
-const { guildId, clientId, token, devLogChannelId, releaseLogChannelId } = require('./config.json');
+const { guildId, clientId, token, debugLogChannelId } = require('./config.json');
 
 
 // create a new client instance, this represents our bot in code or bot is a client connecting to a discord server
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
-if ( devLogChannelId ) {
-	client.devLogChannelId = devLogChannelId;
-}
-
-if ( releaseLogChannelId ) {
-	client.releaseLogChannelId = releaseLogChannelId;
+if ( debugLogChannelId ) {
+	client.debugLogChannelId = debugLogChannelId;
 }
 
 /*************************************/

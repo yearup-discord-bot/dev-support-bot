@@ -18,32 +18,17 @@ module.exports = {
 		const stdout = execSync('date +%m-%d-%y | tr -d "\n"');
 
 		// get a handle to the statically defined channel in config for the dev console output
-		client.devLogChannel = client.channels.cache.get(client.devLogChannelId);
+		client.debugLogChannel = client.channels.cache.get(client.debugLogChannelId);
 
-		if ( client.devLogChannel )
+		if ( client.debugLogChannel )
 		{
 			// the default folder for logs will be in the up one level in a folder call 'logs'
-			client.devLogTail = new Tail(`../logs/${stdout}.debug.log`, { force: true }, line => {
+			client.debugLogTail = new Tail(`../logs/${stdout}.debug.log`, { force: true }, line => {
 				// each time a new line is read the content is sent to the dev log channel
 				// IF there is actual data to send otherwise discord.js craps out
 				// crying about not being able to send an empty string :'(
 				if ( line.length > 0 )
-					client.devLogChannel.send( line );
-			});
-		}
-
-		// get a handle to the statically defined channel in config for the release console output
-		client.relLogChannel = client.channels.cache.get(client.devLogChannelId);
-
-		if ( client.relLogChannel )
-		{
-			// the default folder for logs will be in the up one level in a folder call 'logs'
-			client.relLogTail = new Tail(`../logs/${stdout}.release.log`, { force: true }, line => {
-				// each time a new line is read the content is sent to the release log channel
-				// IF there is actual data to send otherwise discord.js craps out
-				// crying about not being able to send an empty string :'(
-				if ( line.length > 0 )
-					client.relLogChannel.send( line );
+					client.debugLogChannel.send( line );
 			});
 		}
 
