@@ -14,11 +14,16 @@ module.exports = {
 
 		client.devLogChannel = client.channels.cache.get(client.devLogChannelId);
 
-		client.devLogTail = new Tail('./log', line => {
-			console.log( line );
-			client.devLogChannel.send( line );
-		});
-		
+		try {
+			client.devLogTail = new Tail('./log', line => {
+				console.log( line );
+				client.devLogChannel.send( line );
+			});
+		}
+		catch (e) {
+			console.log(e);
+		}
+
 		// log out to the console the following message telling the world that ITS ALIVE!!!
 		console.log(`${client.user.tag} ready!`);
 	}
