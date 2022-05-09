@@ -10,7 +10,7 @@ dfconst { guildId, clientId, token, devLogChannelId, releaseLogChannelId } = req
 
 
 // create a new client instance, this represents our bot in code or bot is a client connecting to a discord server
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+fdconst client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 if ( devLogChannelId ) {
 	client.devLogChannelId = devLogChannelId;
