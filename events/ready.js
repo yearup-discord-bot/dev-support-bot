@@ -11,6 +11,7 @@ module.exports = {
 	execute(client) {
 
 		const Tail = require('tail-file');
+		const fs = require('node:fs');
 
 		const {execSync} = require('child_process');
 		// get the date to use as the name for the current days log
@@ -22,8 +23,11 @@ module.exports = {
 
 		if ( client.debugLogChannel )
 		{
+		if ( !fs.existsSync(`../logs/${stdout}.log`) )
+			fs.writeFile( `../logs/${stdout}.log`, '---- BEGIN LOG ----\n', () => {} )
+	
 			// the default folder for logs will be in the up one level in a folder call 'logs'
-			client.debugLogTail = new Tail(`../logs/${stdout}.debug.log`, { force: true }, line => {
+			client.debugLogTail = new Tail(`../logs/${stdout}.log`, { force: true }, line => {
 				// each time a new line is read the content is sent to the dev log channel
 				// IF there is actual data to send otherwise discord.js craps out
 				// crying about not being able to send an empty string :'(
