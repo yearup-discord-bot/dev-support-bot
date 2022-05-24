@@ -8,7 +8,7 @@ module.exports = {
 	async execute(interaction) {
 
 		// log out to the console information about this interaction
-		console.log(`User: ${interaction.user.tag} in #${interaction.channel.name} triggered a(n) ${interaction.type}: ${interaction.commandName}`);
+		console.log(`User in #${interaction.channel.name} triggered a(n) ${interaction.type}: ${interaction.commandName}`);
 
 		// early exit if interaction isn't a command
 		if (!interaction.isCommand()) return;
